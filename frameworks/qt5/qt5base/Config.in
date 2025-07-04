@@ -26,3 +26,15 @@ config BUILD_qt5base-gui_OPENGL_NONE
     bool "no"
 
 endchoice
+
+config PACKAGE_qt5base-input-autodiscovery
+    bool "Enable libudev for input autodiscovery"
+    depends on PACKAGE_qt5base-core # Adjust dependencies as needed
+    default y # Or n, depending on desired default
+
+config PACKAGE_qt5base-plugin-input-libinput
+    bool "Enable libinput plugin"
+    depends on PACKAGE_qt5base-core # Adjust dependencies
+    depends on PACKAGE_qt5base-input-autodiscovery # This explicitly creates the dependency you want!
+    select LIB_libinput # Add this if it's a library dependency
+    default y # Or n
