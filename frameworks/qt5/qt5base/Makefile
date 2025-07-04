@@ -32,9 +32,6 @@ include ../qmake.mk
 # makes use of the host build.
 HOST_BUILD_DEPENDS:=qt5base
 
-# hard disable udev support for now
-CONFIG_PACKAGE_qt5base-input-autodiscovery:=
-
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_PACKAGE_qt5base-plugin-imageformats-jpeg \
 	CONFIG_PACKAGE_qt5base-network \
