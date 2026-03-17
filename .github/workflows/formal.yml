@@ -2,6 +2,7 @@ name: Test Formalities
 
 on:
   pull_request:
+  workflow_dispatch: # Aggiungi questa riga per abilitare l'esecuzione manuale
 
 jobs:
   build:
