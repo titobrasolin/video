@@ -625,11 +625,11 @@ define Package/qt5base-plugin-platforms-vnc/install
 endef
 
 define Package/qt5base-plugin-platforms-eglfs/install
-    $(if $(wildcard $(PKG_INSTALL_DIR)/usr/lib/libQt5EglFsKmsSupport.so*),$(call Build/Install/Libs,$(1),libQt5EglFsKmsSupport))
-    $(if $(wildcard $(PKG_INSTALL_DIR)/usr/lib/libQt5EglFSDeviceIntegration.so*),$(call Build/Install/Libs,$(1),libQt5EglFSDeviceIntegration))
-    $(if $(wildcard $(PKG_INSTALL_DIR)/usr/lib/qt5/plugins/egldeviceintegrations/libqeglfs-kms-egldevice-integration.so),$(call Build/Install/Plugins,$(1),egldeviceintegrations,libqeglfs-kms-egldevice-integration))
-    $(if $(wildcard $(PKG_INSTALL_DIR)/usr/lib/qt5/plugins/egldeviceintegrations/libqeglfs-kms-integration.so),$(call Build/Install/Plugins,$(1),egldeviceintegrations,libqeglfs-kms-integration))
-    $(call Build/Install/Plugins,$(1),platforms,libqeglfs)
+	$(if $(wildcard $(PKG_INSTALL_DIR)/usr/lib/libQt5EglFsKmsSupport.so*),$(call Build/Install/Libs,$(1),libQt5EglFsKmsSupport))
+	$(if $(wildcard $(PKG_INSTALL_DIR)/usr/lib/libQt5EglFSDeviceIntegration.so*),$(call Build/Install/Libs,$(1),libQt5EglFSDeviceIntegration))
+	$(if $(wildcard $(PKG_INSTALL_DIR)/usr/lib/qt5/plugins/egldeviceintegrations/libqeglfs-kms-egldevice-integration.so),$(call Build/Install/Plugins,$(1),egldeviceintegrations,libqeglfs-kms-egldevice-integration))
+	$(if $(wildcard $(PKG_INSTALL_DIR)/usr/lib/qt5/plugins/egldeviceintegrations/libqeglfs-kms-integration.so),$(call Build/Install/Plugins,$(1),egldeviceintegrations,libqeglfs-kms-integration))
+	$(call Build/Install/Plugins,$(1),platforms,libqeglfs)
 endef
 
 define Package/qt5base-plugin-platforms-minimalegl/install
