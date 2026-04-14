@@ -643,11 +643,15 @@ define Package/qt5base-plugin-platforms-minimalegl/install
 endef
 
 define Package/qt5base-plugin-platforms-minimal/install
-	$(call Build/Install/Plugins,$(1),platforms,libqminimal)
+	$(if $(wildcard $(PKG_INSTALL_DIR)/usr/lib/qt5/plugins/platforms/libqminimal.so*), \
+		$(call Build/Install/Plugins,$(1),platforms,libqminimal) \
+	)
 endef
 
 define Package/qt5base-plugin-platforms-offscreen/install
-	$(call Build/Install/Plugins,$(1),platforms,libqoffscreen)
+	$(if $(wildcard $(PKG_INSTALL_DIR)/usr/lib/qt5/plugins/platforms/libqoffscreen.so*), \
+		$(call Build/Install/Plugins,$(1),platforms,libqoffscreen) \
+	)
 endef
 
 #define Package/qt5base-plugin-sqldrivers-sqlite/install
