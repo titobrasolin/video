@@ -639,7 +639,9 @@ define Package/qt5base-plugin-platforms-eglfs/install
 endef
 
 define Package/qt5base-plugin-platforms-minimalegl/install
-	$(call Build/Install/Plugins,$(1),platforms,libqminimalegl)
+	$(if $(wildcard $(PKG_INSTALL_DIR)/usr/lib/qt5/plugins/platforms/libqminimalegl.so*), \
+		$(call Build/Install/Plugins,$(1),platforms,libqminimalegl) \
+	)
 endef
 
 define Package/qt5base-plugin-platforms-minimal/install
