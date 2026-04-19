@@ -167,7 +167,7 @@ endef
 define Package/qt5base-plugin-input-libinput
   $(call Package/qt5base/Default)
   TITLE+=libinput (plugin)
-  DEPENDS+=+qt5base-core +qt5base-gui +libinput @PACKAGE_qt5base-input-autodiscovery
+  DEPENDS+=+qt5base-core +qt5base-gui +libinput
 endef
 
 define Package/qt5base-plugin-input-evdevkeyboard
