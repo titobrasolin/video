@@ -12,7 +12,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qt5base
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 PKG_HASH:=b04815058c18058b6ba837206756a2c87d1391f07a0dcb0dd314f970fd041592
 
 include ../common.mk
@@ -47,6 +47,7 @@ PKG_CONFIG_DEPENDS:= \
 	CONFIG_PACKAGE_qt5base-plugin-input-libinput \
 	CONFIG_BUILD_qt5base-core_INOTIFY \
 	CONFIG_PACKAGE_qt5base-plugin-platforms-eglfs \
+	CONFIG_PACKAGE_qt5base-dbus \
 #	CONFIG_PACKAGE_qt5base-gl \
 #	CONFIG_PACKAGE_qt5base-plugin-imageformats-png \
 #	CONFIG_PACKAGE_qt5base-plugin-platforms-minimalegl \
@@ -151,6 +152,12 @@ endef
 #   TITLE+=xml
 #   DEPENDS+=+qt5base-core +qt5base-gui +libmesa
 # endef
+
+define Package/qt5base-dbus
+  $(call Package/qt5base/Default)
+  TITLE+=dbus
+  DEPENDS+=+qt5base-core +libdbus
+endef
 
 #### plugins
 
@@ -349,7 +356,7 @@ define Build/Configure
 			$(if $(CONFIG_PACKAGE_qt5base-examples),,--nomake=examples) \
 			--gui=$(if $(CONFIG_PACKAGE_qt5base-gui),yes,no) \
 			--widgets=$(if $(CONFIG_PACKAGE_qt5base-widgets),yes,no) \
-			--dbus=no \
+			--dbus=$(if $(CONFIG_PACKAGE_qt5base-dbus),yes,no) \
 			--accessibility=yes \
 			--doubleconversion=system \
 			--glib=no \
@@ -576,6 +583,10 @@ define Package/qt5base-eglfs-device-integration/install
 	$(call Build/Install/Plugins,$(1),egldeviceintegrations,libqeglfs-kms-egldevice-integration)
 endef
 
+define Package/qt5base-dbus/install
+	$(call Build/Install/Libs,$(1),libQt5DBus)
+endef
+
 define Package/qt5base-plugin-bearer-generic/install
 	$(call Build/Install/Plugins,$(1),bearer,libqgenericbearer)
 endef
@@ -663,6 +674,7 @@ $(eval $(call BuildPackage,qt5base-sql))
 $(eval $(call BuildPackage,qt5base-test))
 $(eval $(call BuildPackage,qt5base-widgets))
 $(eval $(call BuildPackage,qt5base-xml))
+$(eval $(call BuildPackage,qt5base-dbus))
 #$(eval $(call BuildPackage,qt5base-eglfs-device-integration))
 $(eval $(call BuildPackage,qt5base-plugin-bearer-generic))
 $(eval $(call BuildPackage,qt5base-plugin-input-libinput))
