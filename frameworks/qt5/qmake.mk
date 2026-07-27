@@ -100,7 +100,7 @@ define Build/Install/Default
 	INSTALL_ROOT="$(PKG_INSTALL_DIR)/.owrttmp" \
 		$(MAKE) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) \
 			$(1) install
-	mv "$(PKG_INSTALL_DIR)/.owrttmp/$(STAGING_DIR)/"* \
+	cp -a "$(PKG_INSTALL_DIR)/.owrttmp/$(STAGING_DIR)/"* \
 		$(PKG_INSTALL_DIR)/ && \
 		rm -r $(PKG_INSTALL_DIR)/.owrttmp
 endef
@@ -109,7 +109,7 @@ define Host/Install/Default
 	INSTALL_ROOT="$(HOST_INSTALL_DIR)/.owrttmp" \
 		$(MAKE) -C $(HOST_BUILD_DIR)/$(MAKE_PATH) \
 			$(1) install
-	mv "$(HOST_INSTALL_DIR)/.owrttmp/$(STAGING_DIR_HOST)/"* \
+	cp -a "$(HOST_INSTALL_DIR)/.owrttmp/$(STAGING_DIR_HOST)/"* \
 		$(HOST_INSTALL_DIR)/ && \
 		rm -r "$(HOST_INSTALL_DIR)/.owrttmp"
 endef
